@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Situkangpiknik</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .sidebar { transition: all 0.3s; }
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .nav-link.active { background-color: #1e3a8a; color: white; }
+    </style>
+</head>
+<body class="bg-gray-100 flex min-h-screen">
+
+    <!-- Sidebar -->
+    <aside class="sidebar w-64 bg-blue-900 text-white flex-shrink-0 flex flex-col">
+        <div class="p-6">
+            <h1 class="text-xl font-bold flex items-center">
+                <i class="fas fa-tools mr-2 text-yellow-500"></i> ADMIN PANEL
+            </h1>
+            <p class="text-xs text-blue-300 mt-1 uppercase tracking-widest">Situkangpiknik</p>
+        </div>
+        <nav class="flex-1 px-4 space-y-2 pb-6">
+            <a href="#" onclick="showTab('settings', this)" class="nav-link flex items-center p-3 rounded-lg hover:bg-blue-800 transition active">
+                <i class="fas fa-cog mr-3 w-5"></i> General Settings
+            </a>
+            <a href="#" onclick="showTab('units', this)" class="nav-link flex items-center p-3 rounded-lg hover:bg-blue-800 transition">
+                <i class="fas fa-car mr-3 w-5"></i> Unit Tersedia
+            </a>
+            <a href="#" onclick="showTab('packages', this)" class="nav-link flex items-center p-3 rounded-lg hover:bg-blue-800 transition">
+                <i class="fas fa-map-marked-alt mr-3 w-5"></i> Paket Wisata
+            </a>
+            <a href="#" onclick="showTab('gallery', this)" class="nav-link flex items-center p-3 rounded-lg hover:bg-blue-800 transition">
+                <i class="fas fa-images mr-3 w-5"></i> Gallery
+            </a>
+            <a href="#" onclick="showTab('blog', this)" class="nav-link flex items-center p-3 rounded-lg hover:bg-blue-800 transition">
+                <i class="fas fa-newspaper mr-3 w-5"></i> Blog / Artikel
+            </a>
+            <div class="pt-4 border-t border-blue-800">
+                <a href="index.html" target="_blank" class="flex items-center p-3 rounded-lg hover:bg-blue-800 transition text-blue-300 hover:text-white">
+                    <i class="fas fa-external-link-alt mr-3 w-5"></i> Lihat Website
+                </a>
+            </div>
+        </nav>
+        <div class="p-4 border-t border-blue-800 text-xs text-blue-400 text-center">
+            &copy; 2026 Situkangpiknik
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto p-4 md:p-10">
+        <div id="status-msg" class="hidden mb-6 p-4 rounded-lg font-bold"></div>
+
+        <!-- Settings Tab -->
+        <div id="settings" class="tab-content active">
+            <header class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-800">General Settings</h2>
+                <p class="text-gray-500">Manage site identity, hero content, and contact information.</p>
+            </header>
+            
+            <form id="settings-form" class="space-y-6 max-w-4xl">
+                <!-- Site Identity -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 flex items-center">
+                        <i class="fas fa-id-card mr-2 text-yellow-600"></i> Site Identity
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Window Title (SEO)</label>
+                            <input type="text" name="site_title" class="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Logo Text 1</label>
+                                <input type="text" name="logo_text_1" class="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Logo Text 2</label>
+                                <input type="text" name="logo_text_2" class="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Section -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 flex items-center">
+                        <i class="fas fa-star mr-2 text-yellow-600"></i> Hero Section
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Hero Badge Text</label>
+                            <input type="text" name="hero_badge" class="w-full p-3 border border-gray-200 rounded-xl">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Hero Title</label>
+                            <input type="text" name="hero_title" class="w-full p-3 border border-gray-200 rounded-xl">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Hero Subtitle</label>
+                            <textarea name="hero_subtitle" rows="3" class="w-full p-3 border border-gray-200 rounded-xl"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Hero Background Image URL</label>
+                            <input type="text" name="hero_bg_image" class="w-full p-3 border border-gray-200 rounded-xl">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Us Section -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 flex items-center">
+                        <i class="fas fa-info-circle mr-2 text-yellow-600"></i> About Us
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">About Title</label>
+                            <input type="text" name="about_title" class="w-full p-3 border border-gray-200 rounded-xl">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Description Paragraph 1</label>
+                            <textarea name="about_description_1" rows="4" class="w-full p-3 border border-gray-200 rounded-xl"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Description Paragraph 2</label>
+                            <textarea name="about_description_2" rows="4" class="w-full p-3 border border-gray-200 rounded-xl"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">About Side Image URL</label>
+                            <input type="text" name="about_image" class="w-full p-3 border border-gray-200 rounded-xl">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact & Socials -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 flex items-center">
+                        <i class="fas fa-address-book mr-2 text-yellow-600"></i> Contact & Social Media
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Office Phone</label>
+                            <input type="text" name="contact_phone_office" class="w-full p-3 border border-gray-200 rounded-xl">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Admin Phone</label>
+                            <input type="text" name="contact_phone_admin" class="w-full p-3 border border-gray-200 rounded-xl">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">WhatsApp Number (eg: 62812...)</label>
+                            <input type="text" name="social_whatsapp" class="w-full p-3 border border-gray-200 rounded-xl">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Contact Email</label>
+                            <input type="email" name="contact_email" class="w-full p-3 border border-gray-200 rounded-xl">
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Full Office Address</label>
+                            <textarea name="contact_address" rows="2" class="w-full p-3 border border-gray-200 rounded-xl"></textarea>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">TikTok Profile URL</label>
+                                <input type="text" name="social_tiktok" class="w-full p-3 border border-gray-200 rounded-xl">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Instagram URL</label>
+                                <input type="text" name="social_instagram" class="w-full p-3 border border-gray-200 rounded-xl">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Footer Description</label>
+                            <textarea name="footer_description" rows="2" class="w-full p-3 border border-gray-200 rounded-xl"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sticky bottom-4 pt-10">
+                    <button type="submit" class="w-full bg-blue-900 text-white font-bold py-4 rounded-2xl shadow-xl hover:bg-blue-800 transition transform hover:-translate-y-1">
+                        <i class="fas fa-save mr-2"></i> SIMPAN PERUBAHAN
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- CRUD Tabs (Simple List + Add UI) -->
+        <div id="units" class="tab-content">
+            <header class="flex justify-between items-center mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800">Unit Tersedia</h2>
+                    <p class="text-gray-500">Kelola daftar kendaraan/armada sewa.</p>
+                </div>
+                <button onclick="openModal('unit')" class="bg-blue-900 text-white px-6 py-2 rounded-xl font-bold shadow-lg hover:bg-yellow-500 transition hover:text-blue-900">
+                    <i class="fas fa-plus mr-2"></i> Tambah Unit
+                </button>
+            </header>
+            <div id="units-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Loading... -->
+            </div>
+        </div>
+
+        <div id="packages" class="tab-content">
+            <header class="flex justify-between items-center mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800">Paket Wisata</h2>
+                    <p class="text-gray-500">Kelola penawaran paket perjalanan.</p>
+                </div>
+                <button onclick="openModal('package')" class="bg-blue-900 text-white px-6 py-2 rounded-xl font-bold shadow-lg hover:bg-yellow-500 transition hover:text-blue-900">
+                    <i class="fas fa-plus mr-2"></i> Tambah Paket
+                </button>
+            </header>
+            <div id="packages-list" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Loading... -->
+            </div>
+        </div>
+
+        <div id="gallery" class="tab-content">
+            <header class="flex justify-between items-center mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800">Gallery</h2>
+                    <p class="text-gray-500">Kelola foto-foto dokumentasi.</p>
+                </div>
+                <button onclick="openModal('gallery')" class="bg-blue-900 text-white px-6 py-2 rounded-xl font-bold shadow-lg hover:bg-yellow-500 transition hover:text-blue-900">
+                    <i class="fas fa-plus mr-2"></i> Tambah Foto
+                </button>
+            </header>
+            <div id="gallery-list" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Loading... -->
+            </div>
+        </div>
+
+        <div id="blog" class="tab-content">
+            <header class="flex justify-between items-center mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800">Blog / Artikel</h2>
+                    <p class="text-gray-500">Kelola konten edukasi dan informasi.</p>
+                </div>
+                <button onclick="openModal('blog')" class="bg-blue-900 text-white px-6 py-2 rounded-xl font-bold shadow-lg hover:bg-yellow-500 transition hover:text-blue-900">
+                    <i class="fas fa-plus mr-2"></i> Tambah Artikel
+                </button>
+            </header>
+            <div id="blog-list" class="space-y-4">
+                <!-- Loading... -->
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        const SUPABASE_URL = 'https://pgltsyrtduvddpcdlchk.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_qA1ikbX5NfBE1kAeG-3aOA_Kr1f-5xi';
+        const { createClient } = supabase;
+        const _supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // State
+        let currentSettings = {};
+
+        // Notification Helper
+        function notify(msg, type='success') {
+            const el = document.getElementById('status-msg');
+            el.innerText = msg;
+            el.className = `fixed top-4 right-4 z-[100] px-6 py-3 rounded-lg shadow-2xl text-white font-bold transition-all duration-500 ${type === 'success' ? 'bg-green-600' : 'bg-red-600'}`;
+            el.classList.remove('hidden');
+            setTimeout(() => el.classList.add('hidden'), 3000);
+        }
+
+        // Tab Switcher
+        function showTab(tabId, el) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            el.classList.add('active');
+            
+            if(tabId === 'settings') loadSettings();
+            if(tabId === 'units') loadUnits();
+            if(tabId === 'packages') loadPackages();
+            if(tabId === 'gallery') loadGallery();
+            if(tabId === 'blog') loadBlog();
+        }
+
+        // Load Settings
+        async function loadSettings() {
+            const { data, error } = await _supabase.from('situkangpiknik_settings').select('*').eq('id', 1).single();
+            if (error) return console.error(error);
+            
+            const form = document.getElementById('settings-form');
+            Object.keys(data).forEach(key => {
+                if(form.elements[key]) form.elements[key].value = data[key] || '';
+            });
+            currentSettings = data;
+        }
+
+        // Save Settings
+        document.getElementById('settings-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const updates = Object.fromEntries(formData.entries());
+            
+            const { error } = await _supabase.from('situkangpiknik_settings').update(updates).eq('id', 1);
+            if(error) {
+                notify('Gagal menyimpan: ' + error.message, 'error');
+            } else {
+                notify('Pengaturan berhasil diperbarui!');
+            }
+        });
+
+        // Load Units
+        async function loadUnits() {
+            const listEl = document.getElementById('units-list');
+            listEl.innerHTML = '<div class="col-span-full text-center py-10 opacity-50">Memuat data...</div>';
+            
+            const { data, error } = await _supabase.from('situkangpiknik_units').select('*').order('created_at', { ascending: false });
+            if(error) return notify(error.message, 'error');
+            
+            listEl.innerHTML = '';
+            data.forEach(unit => {
+                const card = document.createElement('div');
+                card.className = 'bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center space-x-4';
+                card.innerHTML = `
+                    <div class="bg-blue-50 p-4 rounded-lg text-blue-900 text-2xl">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-gray-800">${unit.name}</h4>
+                        <p class="text-xs text-gray-500">${unit.capacity} Kursi • ${unit.fuel_type}</p>
+                    </div>
+                    <button onclick="deleteUnit('${unit.id}')" class="text-red-400 hover:text-red-700 p-2"><i class="fas fa-trash"></i></button>
+                `;
+                listEl.appendChild(card);
+            });
+        }
+
+        // Load Packages
+        async function loadPackages() {
+            const listEl = document.getElementById('packages-list');
+            listEl.innerHTML = '<div class="col-span-full text-center py-10 opacity-50">Memuat data...</div>';
+            
+            const { data, error } = await _supabase.from('situkangpiknik_packages').select('*').order('created_at', { ascending: false });
+            if(error) return notify(error.message, 'error');
+            
+            listEl.innerHTML = '';
+            data.forEach(pkg => {
+                const card = document.createElement('div');
+                card.className = 'bg-white p-6 rounded-xl shadow-sm border border-gray-100';
+                card.innerHTML = `
+                    <div class="flex justify-between mb-2">
+                        <h4 class="font-bold text-lg text-blue-900">${pkg.name}</h4>
+                        <span class="text-xs font-bold px-2 py-1 rounded bg-yellow-100 text-yellow-700">${pkg.duration}</span>
+                    </div>
+                    <p class="text-sm text-gray-600 line-clamp-2 mb-4">${pkg.description}</p>
+                    <div class="flex justify-end">
+                        <button onclick="deletePackage('${pkg.id}')" class="text-red-500 text-sm font-semibold hover:underline">Hapus</button>
+                    </div>
+                `;
+                listEl.appendChild(card);
+            });
+        }
+
+        // Load Gallery
+        async function loadGallery() {
+            const listEl = document.getElementById('gallery-list');
+            listEl.innerHTML = '<div class="col-span-full text-center py-10 opacity-50">Memuat data...</div>';
+            
+            const { data, error } = await _supabase.from('situkangpiknik_gallery').select('*').order('created_at', { ascending: false });
+            if(error) return notify(error.message, 'error');
+            
+            listEl.innerHTML = '';
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'group relative bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 aspect-square';
+                card.innerHTML = `
+                    <img src="${item.image_url}" class="w-full h-full object-cover" alt="${item.title}">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <button onclick="deleteGallery('${item.id}')" class="bg-red-600 text-white p-2 rounded-full hover:bg-red-700 transition">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                listEl.appendChild(card);
+            });
+        }
+
+        // Load Blog
+        async function loadBlog() {
+            const listEl = document.getElementById('blog-list');
+            listEl.innerHTML = '<div class="text-center py-10 opacity-50">Memuat data...</div>';
+            
+            const { data, error } = await _supabase.from('situkangpiknik_blog').select('*').order('created_at', { ascending: false });
+            if(error) return notify(error.message, 'error');
+            
+            listEl.innerHTML = '';
+            data.forEach(article => {
+                const card = document.createElement('div');
+                card.className = 'bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4';
+                card.innerHTML = `
+                    <img src="${article.image_url}" class="w-20 h-20 rounded-lg object-cover" alt="">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-gray-800">${article.title}</h4>
+                        <p class="text-xs text-gray-500">Kategori: ${article.category}</p>
+                    </div>
+                    <button onclick="deleteBlog('${article.id}')" class="text-red-400 hover:text-red-700 p-2 text-xl">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                `;
+                listEl.appendChild(card);
+            });
+        }
+
+        // Modal Handlers
+        function openModal(type) {
+            let fields = '';
+            let title = '';
+            
+            if(type === 'unit') {
+                title = 'Unit Baru';
+                fields = `
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Unit</label>
+                        <input type="text" name="name" required class="w-full p-3 border border-gray-200 rounded-xl">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Kapasitas</label>
+                            <input type="number" name="capacity" required class="w-full p-3 border border-gray-200 rounded-xl">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Bahan Bakar</label>
+                            <input type="text" name="fuel_type" class="w-full p-3 border border-gray-200 rounded-xl">
+                        </div>
+                    </div>
+                `;
+            } else if(type === 'package') {
+                title = 'Paket Baru';
+                fields = `
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Paket</label>
+                        <input type="text" name="name" required class="w-full p-3 border border-gray-200 rounded-xl">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Durasi</label>
+                            <input type="text" name="duration" required placeholder="eg: 1 Hari" class="w-full p-3 border border-gray-200 rounded-xl">
+                        </div>
+                        <div class="flex items-center pt-6">
+                            <input type="checkbox" name="is_popular" id="is_popular" class="w-5 h-5 mr-2">
+                            <label for="is_popular" class="text-sm font-semibold text-gray-700">Populer?</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Deskripsi</label>
+                        <textarea name="description" rows="3" class="w-full p-3 border border-gray-200 rounded-xl"></textarea>
+                    </div>
+                `;
+            } else if(type === 'gallery') {
+                title = 'Foto Gallery Baru';
+                fields = `
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Judul Foto</label>
+                        <input type="text" name="title" required class="w-full p-3 border border-gray-200 rounded-xl">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">URL Foto</label>
+                        <input type="text" name="image_url" required class="w-full p-3 border border-gray-200 rounded-xl">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Kategori (opsional)</label>
+                        <input type="text" name="category" class="w-full p-3 border border-gray-200 rounded-xl">
+                    </div>
+                `;
+            } else if(type === 'blog') {
+                title = 'Artikel Baru';
+                fields = `
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Judul Artikel</label>
+                        <input type="text" name="title" required class="w-full p-3 border border-gray-200 rounded-xl">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Ringkasan</label>
+                        <textarea name="excerpt" rows="2" required class="w-full p-3 border border-gray-200 rounded-xl"></textarea>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Kategori</label>
+                            <input type="text" name="category" required class="w-full p-3 border border-gray-200 rounded-xl">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">URL Gambar Cover</label>
+                            <input type="text" name="image_url" required class="w-full p-3 border border-gray-200 rounded-xl">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Konten Lengkap (HTML support)</label>
+                        <textarea name="content" rows="4" required class="w-full p-3 border border-gray-200 rounded-xl"></textarea>
+                    </div>
+                `;
+            }
+
+            const modalHtml = `
+                <div id="modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[200] p-4">
+                    <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto transform transition-all">
+                        <div class="bg-blue-900 p-6 text-white sticky top-0 flex justify-between items-center z-10">
+                            <h3 class="text-xl font-bold uppercase tracking-tight">Tambah ${title}</h3>
+                            <button onclick="closeModal()" class="text-white opacity-50 hover:opacity-100"><i class="fas fa-times"></i></button>
+                        </div>
+                        <form id="modal-form" class="p-6 space-y-4">
+                            ${fields}
+                            <button type="submit" class="w-full bg-yellow-500 text-blue-900 font-bold py-3 rounded-xl hover:bg-yellow-400 transition">SIMPAN</button>
+                        </form>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+            
+            document.getElementById('modal-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const item = Object.fromEntries(formData.entries());
+                if(item.is_popular) item.is_popular = true;
+                
+                let table = '';
+                if(type === 'unit') table = 'situkangpiknik_units';
+                else if(type === 'package') table = 'situkangpiknik_packages';
+                else if(type === 'gallery') table = 'situkangpiknik_gallery';
+                else if(type === 'blog') table = 'situkangpiknik_blog';
+
+                const { error } = await _supabase.from(table).insert([item]);
+                
+                if(error) {
+                    notify(error.message, 'error');
+                } else {
+                    notify('Berhasil ditambahkan!');
+                    closeModal();
+                    if(type === 'unit') loadUnits(); 
+                    else if(type === 'package') loadPackages();
+                    else if(type === 'gallery') loadGallery();
+                    else if(type === 'blog') loadBlog();
+                }
+            });
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            if(modal) modal.remove();
+        }
+
+        // Delete Handlers
+        async function deleteUnit(id) {
+            if(!confirm('Hapus unit ini?')) return;
+            const { error } = await _supabase.from('situkangpiknik_units').delete().eq('id', id);
+            if(!error) loadUnits();
+        }
+
+        async function deletePackage(id) {
+            if(!confirm('Hapus paket ini?')) return;
+            const { error } = await _supabase.from('situkangpiknik_packages').delete().eq('id', id);
+            if(!error) loadPackages();
+        }
+
+        async function deleteGallery(id) {
+            if(!confirm('Hapus foto ini?')) return;
+            const { error } = await _supabase.from('situkangpiknik_gallery').delete().eq('id', id);
+            if(!error) loadGallery();
+        }
+
+        async function deleteBlog(id) {
+            if(!confirm('Hapus artikel ini?')) return;
+            const { error } = await _supabase.from('situkangpiknik_blog').delete().eq('id', id);
+            if(!error) loadBlog();
+        }
+
+        // Init
+        loadSettings();
+    </script>
+</body>
+</html>
