@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Situkangpiknik - Sewa Mobil & Paket Wisata Indonesia</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Oswald:wght@500;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        .font-heading {
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Navigation -->
+    <nav class="glass-nav shadow-sm sticky top-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-3 md:py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="bg-blue-900 p-1.5 md:p-2 rounded-lg shadow-inner">
+                    <i class="fas fa-car-side text-yellow-400 text-lg md:text-xl"></i>
+                </div>
+                <span class="text-xl md:text-2xl font-bold tracking-tighter text-blue-900 leading-tight">
+                    SITUKANG<span class="text-yellow-600 block md:inline">PIKNIK</span>
+                </span>
+            </div>
+            <div class="hidden md:flex space-x-8 font-semibold text-gray-600">
+                <a href="#home" class="hover:text-blue-900 transition-colors duration-300">Beranda</a>
+                <a href="#tentang" class="hover:text-blue-900 transition-colors duration-300">Tentang Kami</a>
+                <a href="#layanan" class="hover:text-blue-900 transition-colors duration-300">Layanan</a>
+                <a href="#kontak" class="hover:text-blue-900 transition-colors duration-300">Kontak</a>
+            </div>
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="https://www.tiktok.com/@rentacarwisataindonesia" target="_blank"
+                    class="text-gray-600 hover:text-blue-900 text-xl transition-colors">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <button class="md:hidden text-2xl text-blue-900 p-2 focus:outline-none" id="mobile-menu-btn"
+                    aria-label="Toggle Menu">
+                    <i class="fas fa-bars" id="menu-icon"></i>
+                </button>
+            </div>
+            <button class="md:hidden text-2xl text-blue-900 p-2 focus:outline-none" id="mobile-menu-btn"
+                aria-label="Toggle Menu">
+                <i class="fas fa-bars" id="menu-icon"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-xl transition-all duration-300 ease-in-out">
+            <div class="flex flex-col p-4 space-y-4 shadow-inner">
+                <a href="#home"
+                    class="font-semibold text-gray-700 hover:text-blue-900 py-2 border-b border-gray-50">Beranda</a>
+                <a href="#tentang"
+                    class="font-semibold text-gray-700 hover:text-blue-900 py-2 border-b border-gray-50">Tentang
+                    Kami</a>
+                <a href="#layanan"
+                    class="font-semibold text-gray-700 hover:text-blue-900 py-2 border-b border-gray-50">Layanan</a>
+                <a href="#kontak"
+                    class="font-semibold text-gray-700 hover:text-blue-900 py-2 border-b border-gray-50">Kontak</a>
+                <a href="https://wa.me/6281249907117" target="_blank"
+                    class="bg-yellow-500 text-blue-900 font-bold py-3 rounded-lg text-center flex items-center justify-center">
+                    <i class="fab fa-whatsapp mr-2"></i> Konsultasi Gratis
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient min-h-[500px] md:h-[700px] flex items-center text-white pt-16 md:pt-0">
+        <div class="container mx-auto px-4 py-12 md:py-0">
+            <div class="max-w-4xl">
+                <h2 class="text-yellow-400 font-bold tracking-widest uppercase mb-4 text-sm md:text-base">Travel & Car
+                    Rental Terpercaya</h2>
+                <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-[1.1]">SEWA MOBIL DRIVER & WISATA
+                    DOMESTIK INDONESIA TERPERCAYA</h1>
+                <p class="text-lg md:text-2xl mb-10 text-gray-200 max-w-2xl leading-relaxed">Situkangpiknik menyediakan
+                    solusi transportasi profesional dan paket wisata domestik terbaik untuk perjalanan Anda.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="https://wa.me/6281249907117" target="_blank"
+                        class="bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-bold py-4 px-8 rounded-xl text-center transition-all duration-300 transform hover:-translate-y-1 shadow-lg flex items-center justify-center">
+                        <i class="fab fa-whatsapp mr-2 text-2xl"></i> Hubungi Kami Sekarang
+                    </a>
+                    <a href="#layanan"
+                        class="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/30 text-white font-bold py-4 px-8 rounded-xl text-center transition-all duration-300">
+                        Lihat Layanan Kami
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Stats/Quick Info -->
+    <section class="py-12 md:py-16 bg-blue-900 text-white border-b border-white/10">
+        <div class="container mx-auto px-4 grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-4 text-center">
+            <div class="border-r border-white/10 lg:border-r-0">
+                <p class="text-3xl md:text-5xl font-bold text-yellow-400 mb-2">50+</p>
+                <p class="uppercase tracking-widest text-[10px] md:text-xs font-semibold opacity-80">Pilihan Armada</p>
+            </div>
+            <div class="lg:border-r lg:border-white/10 lg:border-l lg:border-white/10">
+                <p class="text-3xl md:text-5xl font-bold text-yellow-400 mb-2">24/7</p>
+                <p class="uppercase tracking-widest text-[10px] md:text-xs font-semibold opacity-80">Layanan Pelanggan
+                </p>
+            </div>
+            <div class="border-r border-white/10 lg:border-r-0">
+                <p class="text-3xl md:text-5xl font-bold text-yellow-400 mb-2">1000+</p>
+                <p class="uppercase tracking-widest text-[10px] md:text-xs font-semibold opacity-80">Pelanggan Puas</p>
+            </div>
+            <div>
+                <p class="text-3xl md:text-5xl font-bold text-yellow-400 mb-2">TOP</p>
+                <p class="uppercase tracking-widest text-[10px] md:text-xs font-semibold opacity-80">Driver Berlisensi
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="tentang" class="py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+                <div class="lg:w-1/2 w-full">
+                    <div class="relative">
+                        <img src="https://asset.kompas.com/crops/K9w5HOptJKJdvdi6HLFRMhi5MKw=/0x0:750x500/1200x800/data/photo/2022/01/31/61f7648816ea9.jpg"
+                            alt="Tentang Kami - Dolan Kreatif Nusantara"
+                            class="rounded-2xl shadow-2xl object-cover h-[300px] md:h-[500px] w-full">
+                        <div
+                            class="absolute -bottom-6 -right-6 hidden md:block bg-yellow-500 p-8 rounded-2xl shadow-xl">
+                            <p class="text-blue-900 font-bold text-4xl">5+</p>
+                            <p class="text-blue-800 font-semibold text-sm uppercase tracking-tight">Tahun Melayani</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 w-full mt-8 lg:mt-0">
+                    <h2 class="text-3xl md:text-5xl font-bold text-blue-900 mb-6 leading-tight">Partner Perjalanan
+                        Terbaik Anda di Indonesia</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-base md:text-lg">
+                        Situkangpiknik (sebelumnya Rent A Car Wisata Indonesia) adalah penyedia jasa transportasi dan
+                        pariwisata yang berlokasi di Sidoarjo. Kami berkomitmen memberikan pengalaman perjalanan yang
+                        aman, nyaman, dan berkesan bagi setiap pelanggan kami, baik untuk kebutuhan personal maupun
+                        instansi.
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed text-base md:text-lg">
+                        Dengan armada yang terawat dan pengemudi profesional yang berpengalaman, kami siap melayani
+                        kebutuhan rental mobil harian, bulanan, hingga paket wisata domestik ke berbagai destinasi
+                        menarik di seluruh Indonesia.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+                        <div
+                            class="flex items-center space-x-3 bg-gray-50 p-4 rounded-xl border-l-4 border-yellow-500 shadow-sm">
+                            <i class="fas fa-check-circle text-blue-900 text-xl"></i>
+                            <span class="font-bold text-blue-900">Armada Prima</span>
+                        </div>
+                        <div
+                            class="flex items-center space-x-3 bg-gray-50 p-4 rounded-xl border-l-4 border-yellow-500 shadow-sm">
+                            <i class="fas fa-id-card text-blue-900 text-xl"></i>
+                            <span class="font-bold text-blue-900">Driver Professional</span>
+                        </div>
+                        <div
+                            class="flex items-center space-x-3 bg-gray-50 p-4 rounded-xl border-l-4 border-yellow-500 shadow-sm">
+                            <i class="fas fa-tags text-blue-900 text-xl"></i>
+                            <span class="font-bold text-blue-900">Harga Kompetitif</span>
+                        </div>
+                        <div
+                            class="flex items-center space-x-3 bg-gray-50 p-4 rounded-xl border-l-4 border-yellow-500 shadow-sm">
+                            <i class="fas fa-headset text-blue-900 text-xl"></i>
+                            <span class="font-bold text-blue-900">Layanan 24 Jam</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="layanan" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-blue-900 mb-4 uppercase tracking-tight">Bidang Usaha Kami</h2>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto"></div>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Menyediakan Layanan Transportasi utk kegiatan Harian
+                    Bulanan atau kegiatan kegiatan ku jangan Kerja pemerintahan serta Kegiatan Wisata Anda.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div
+                    class="bg-white p-8 rounded-xl shadow-lg border-b-4 border-yellow-500 hover:transform hover:-translate-y-2 transition duration-300 group">
+                    <div class="text-yellow-500 text-4xl mb-6 transition-transform group-hover:scale-110"><i
+                            class="fas fa-car"></i></div>
+                    <h3 class="text-2xl font-bold mb-4 text-blue-900">Rental Mobil</h3>
+                    <p class="text-gray-600">Sewa mobil harian dan bulanan untuk berbagai kebutuhan. <strong>Wajib
+                            dengan Driver</strong> (tidak melayani lepas kunci) untuk keamanan dan kenyamanan Anda.</p>
+                </div>
+                <!-- Card 2 -->
+                <div
+                    class="bg-white p-8 rounded-xl shadow-lg border-b-4 border-blue-900 hover:transform hover:-translate-y-2 transition duration-300 group">
+                    <div class="text-blue-900 text-4xl mb-6 transition-transform group-hover:scale-110"><i
+                            class="fas fa-map-marked-alt"></i></div>
+                    <h3 class="text-2xl font-bold mb-4 text-blue-900">Paket Wisata Domestik</h3>
+                    <p class="text-gray-600">Nikmati beragam pilihan paket tour wisata domestik ke destinasi unggulan di
+                        seluruh Indonesia dengan pelayanan premium.</p>
+                </div>
+                <!-- Card 3 -->
+                <div
+                    class="bg-white p-8 rounded-xl shadow-lg border-b-4 border-yellow-500 hover:transform hover:-translate-y-2 transition duration-300 group">
+                    <div class="text-yellow-500 text-4xl mb-6 transition-transform group-hover:scale-110"><i
+                            class="fas fa-building"></i></div>
+                    <h3 class="text-2xl font-bold mb-4 text-blue-900">Layanan Government</h3>
+                    <p class="text-gray-600">Layanan khusus untuk instansi Pemerintahan dengan prosedur yang sesuai dan
+                        standar kualitas tinggi.</p>
+                </div>
+                <!-- Card 4 -->
+                <div
+                    class="bg-white p-8 rounded-xl shadow-lg border-b-4 border-blue-900 hover:transform hover:-translate-y-2 transition duration-300 group">
+                    <div class="text-blue-900 text-4xl mb-6 transition-transform group-hover:scale-110"><i
+                            class="fas fa-briefcase"></i></div>
+                    <h3 class="text-2xl font-bold mb-4 text-blue-900">Layanan Corporate</h3>
+                    <p class="text-gray-600">Solusi transportasi harian maupun bulanan untuk Perusahaan dengan sistem
+                        kerjasama yang profesional dan fleksibel.</p>
+                </div>
+                <!-- Card 5 -->
+                <div
+                    class="bg-white p-8 rounded-xl shadow-lg border-b-4 border-yellow-500 hover:transform hover:-translate-y-2 transition duration-300 group">
+                    <div class="text-yellow-500 text-4xl mb-6 transition-transform group-hover:scale-110"><i
+                            class="fas fa-bus"></i></div>
+                    <h3 class="text-2xl font-bold mb-4 text-blue-900">Sewa Bus & Elf</h3>
+                    <p class="text-gray-600">Tersedia unit Elf dan Bus Pariwisata (dengan Driver) untuk perjalanan
+                        rombongan dengan kapasitas yang fleksibel.</p>
+                </div>
+                <!-- Card 6 -->
+                <div
+                    class="bg-blue-900 p-8 rounded-xl shadow-lg border-b-4 border-yellow-500 text-white flex flex-col justify-center items-center text-center">
+                    <h3 class="text-2xl font-bold mb-4">Butuh Konsultasi Khusus?</h3>
+                    <p class="mb-6 opacity-80">Tim ahli kami siap mendiskusikan kebutuhan proyek spesifik Anda.</p>
+                    <a href="https://wa.me/6281249907117"
+                        class="bg-yellow-500 text-blue-900 font-bold py-2 px-6 rounded-full hover:bg-yellow-400 transition">Hubungi
+                        Sekarang</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Unit Tersedia -->
+    <section id="unit-tersedia" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-blue-900 mb-4 uppercase tracking-tight">Unit Tersedia</h2>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto"></div>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Pilihan armada terbaik yang terawat dan siap melayani perjalanan Anda.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Unit Card 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 group">
+                    <div class="h-48 bg-gray-200 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-gray-300 flex items-center justify-center text-gray-400">
+                            <i class="fas fa-car text-5xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl text-blue-900 mb-2">Avanza / Xenia</h3>
+                        <div class="flex justify-between items-center text-sm text-gray-500 mb-4">
+                            <span><i class="fas fa-users mr-1"></i> 6 Kursi</span>
+                            <span><i class="fas fa-gas-pump mr-1"></i> Bensin</span>
+                        </div>
+                        <a href="https://wa.me/6281249907117" class="block text-center bg-blue-900 text-white font-bold py-2 rounded-lg hover:bg-yellow-500 hover:text-blue-900 transition-colors">Pesan Sekarang</a>
+                    </div>
+                </div>
+                <!-- Unit Card 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 group">
+                    <div class="h-48 bg-gray-200 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-gray-300 flex items-center justify-center text-gray-400">
+                            <i class="fas fa-car text-5xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl text-blue-900 mb-2">Innova Reborn</h3>
+                        <div class="flex justify-between items-center text-sm text-gray-500 mb-4">
+                            <span><i class="fas fa-users mr-1"></i> 7 Kursi</span>
+                            <span><i class="fas fa-gas-pump mr-1"></i> Diesel</span>
+                        </div>
+                        <a href="https://wa.me/6281249907117" class="block text-center bg-blue-900 text-white font-bold py-2 rounded-lg hover:bg-yellow-500 hover:text-blue-900 transition-colors">Pesan Sekarang</a>
+                    </div>
+                </div>
+                <!-- Unit Card 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 group">
+                    <div class="h-48 bg-gray-200 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-gray-300 flex items-center justify-center text-gray-400">
+                            <i class="fas fa-bus text-5xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl text-blue-900 mb-2">Toyota Hiace</h3>
+                        <div class="flex justify-between items-center text-sm text-gray-500 mb-4">
+                            <span><i class="fas fa-users mr-1"></i> 14 Kursi</span>
+                            <span><i class="fas fa-gas-pump mr-1"></i> Diesel</span>
+                        </div>
+                        <a href="https://wa.me/6281249907117" class="block text-center bg-blue-900 text-white font-bold py-2 rounded-lg hover:bg-yellow-500 hover:text-blue-900 transition-colors">Pesan Sekarang</a>
+                    </div>
+                </div>
+                <!-- Unit Card 4 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 group">
+                    <div class="h-48 bg-gray-200 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-gray-300 flex items-center justify-center text-gray-400">
+                            <i class="fas fa-bus text-5xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl text-blue-900 mb-2">Elf Long</h3>
+                        <div class="flex justify-between items-center text-sm text-gray-500 mb-4">
+                            <span><i class="fas fa-users mr-1"></i> 19 Kursi</span>
+                            <span><i class="fas fa-gas-pump mr-1"></i> Diesel</span>
+                        </div>
+                        <a href="https://wa.me/6281249907117" class="block text-center bg-blue-900 text-white font-bold py-2 rounded-lg hover:bg-yellow-500 hover:text-blue-900 transition-colors">Pesan Sekarang</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <a href="https://wa.me/6281249907117" class="inline-block border-2 border-blue-900 text-blue-900 font-bold py-3 px-8 rounded-full hover:bg-blue-900 hover:text-white transition-colors">Lihat Semua Unit</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Paket Wisata -->
+    <section id="paket-wisata" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-blue-900 mb-4 uppercase tracking-tight">Paket Wisata</h2>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto"></div>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Jelajahi keindahan Indonesia dengan ragam paket wisata menarik dari kami.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Wisata Card 1 -->
+                <div class="bg-white rounded-xl shadow-lg border-b-4 border-yellow-500 overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                    <div class="h-56 bg-gray-300 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gray-400 flex items-center justify-center text-white">
+                            <i class="fas fa-mountain text-6xl opacity-50"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-yellow-500 text-blue-900 font-bold px-3 py-1 rounded-full text-sm shadow-md">Populer</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-blue-900 mb-3">Paket Bromo Midnight</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">Nikmati keindahan sunrise di Gunung Bromo tanpa harus menginap dengan paket perjalanan tengah malam kami.</p>
+                        <div class="flex justify-between items-center border-t border-gray-100 pt-4">
+                            <span class="text-sm text-gray-500 font-semibold"><i class="far fa-clock mr-1"></i> 1 Hari</span>
+                            <a href="https://wa.me/6281249907117" class="text-blue-900 font-bold hover:text-yellow-600 transition-colors">Detail Tour <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Wisata Card 2 -->
+                <div class="bg-white rounded-xl shadow-lg border-b-4 border-blue-900 overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                    <div class="h-56 bg-gray-300 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gray-400 flex items-center justify-center text-white">
+                            <i class="fas fa-water text-6xl opacity-50"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-blue-900 mb-3">City Tour Malang Batu</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">Jelajahi kawasan wisata Kota Batu, mulai dari Jatim Park, Museum Angkut, hingga wisata petik apel.</p>
+                        <div class="flex justify-between items-center border-t border-gray-100 pt-4">
+                            <span class="text-sm text-gray-500 font-semibold"><i class="far fa-clock mr-1"></i> 1 Hari</span>
+                            <a href="https://wa.me/6281249907117" class="text-blue-900 font-bold hover:text-yellow-600 transition-colors">Detail Tour <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Wisata Card 3 -->
+                <div class="bg-white rounded-xl shadow-lg border-b-4 border-yellow-500 overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                    <div class="h-56 bg-gray-300 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gray-400 flex items-center justify-center text-white">
+                            <i class="fas fa-umbrella-beach text-6xl opacity-50"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-blue-900 mb-3">Eksplor Banyuwangi</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">Menikmati wisata alam Banyuwangi seperti Kawah Ijen, Taman Nasional Baluran, dan pantainya yang eksotis.</p>
+                        <div class="flex justify-between items-center border-t border-gray-100 pt-4">
+                            <span class="text-sm text-gray-500 font-semibold"><i class="far fa-clock mr-1"></i> 3 Hari 2 Malam</span>
+                            <a href="https://wa.me/6281249907117" class="text-blue-900 font-bold hover:text-yellow-600 transition-colors">Detail Tour <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <a href="https://wa.me/6281249907117" class="inline-block bg-yellow-500 text-blue-900 font-bold py-3 px-8 rounded-full hover:bg-yellow-400 transition-colors">Konsultasi Paket</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-blue-900 mb-4 uppercase tracking-tight">Gallery Kami</h2>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto"></div>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Dokumentasi perjalanan dan pelayanan terbaik untuk para pelanggan setia kami.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Gallery Item -->
+                <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden relative group cursor-pointer shadow-sm">
+                    <div class="absolute inset-0 bg-gray-300 flex items-center justify-center text-white">
+                        <i class="fas fa-image text-4xl opacity-50"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-blue-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fab fa-instagram text-white text-3xl transform scale-50 group-hover:scale-100 transition-transform duration-300"></i>
+                    </div>
+                </div>
+                <!-- Gallery Item... -->
+                <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden relative group cursor-pointer shadow-sm">
+                    <div class="absolute inset-0 bg-gray-300 flex items-center justify-center text-white">
+                        <i class="fas fa-image text-4xl opacity-50"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-blue-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fab fa-instagram text-white text-3xl transform scale-50 group-hover:scale-100 transition-transform duration-300"></i>
+                    </div>
+                </div>
+                <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden relative group cursor-pointer shadow-sm">
+                    <div class="absolute inset-0 bg-gray-300 flex items-center justify-center text-white">
+                        <i class="fas fa-image text-4xl opacity-50"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-blue-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fab fa-instagram text-white text-3xl transform scale-50 group-hover:scale-100 transition-transform duration-300"></i>
+                    </div>
+                </div>
+                <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden relative group cursor-pointer shadow-sm">
+                    <div class="absolute inset-0 bg-gray-300 flex items-center justify-center text-white">
+                        <i class="fas fa-image text-4xl opacity-50"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-blue-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fab fa-instagram text-white text-3xl transform scale-50 group-hover:scale-100 transition-transform duration-300"></i>
+                    </div>
+                </div>
+                <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden relative group cursor-pointer shadow-sm hidden md:block">
+                    <div class="absolute inset-0 bg-gray-300 flex items-center justify-center text-white">
+                        <i class="fas fa-image text-4xl opacity-50"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-blue-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fab fa-instagram text-white text-3xl transform scale-50 group-hover:scale-100 transition-transform duration-300"></i>
+                    </div>
+                </div>
+                <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden relative group cursor-pointer shadow-sm hidden md:block">
+                    <div class="absolute inset-0 bg-gray-300 flex items-center justify-center text-white">
+                        <i class="fas fa-image text-4xl opacity-50"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-blue-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fab fa-instagram text-white text-3xl transform scale-50 group-hover:scale-100 transition-transform duration-300"></i>
+                    </div>
+                </div>
+                <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden relative group cursor-pointer shadow-sm hidden lg:block">
+                    <div class="absolute inset-0 bg-gray-300 flex items-center justify-center text-white">
+                        <i class="fas fa-image text-4xl opacity-50"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-blue-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fab fa-instagram text-white text-3xl transform scale-50 group-hover:scale-100 transition-transform duration-300"></i>
+                    </div>
+                </div>
+                <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden relative group cursor-pointer shadow-sm hidden lg:block">
+                    <div class="absolute inset-0 bg-gray-300 flex items-center justify-center text-white">
+                        <i class="fas fa-image text-4xl opacity-50"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-blue-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fab fa-instagram text-white text-3xl transform scale-50 group-hover:scale-100 transition-transform duration-300"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <a href="#" class="inline-block border-2 border-blue-900 text-blue-900 font-bold py-3 px-8 rounded-full hover:bg-blue-900 hover:text-white transition-colors"><i class="fab fa-instagram mr-2"></i> @situkangpiknik</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-blue-900 mb-4 uppercase tracking-tight">Artikel & Tips</h2>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto"></div>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Dapatkan informasi terbaru seputar destinasi wisata, tips perjalanan, dan berita kami.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Blog Item 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
+                    <div class="h-48 bg-gray-300 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gray-400 flex items-center justify-center text-white">
+                            <i class="fas fa-newspaper text-5xl opacity-50 group-hover:scale-110 transition-transform duration-500"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs text-yellow-600 font-bold mb-2 uppercase tracking-wide">Tips Wisata</div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-3 group-hover:text-yellow-500 transition-colors cursor-pointer leading-tight">Keuntungan Sewa Mobil dengan Driver untuk Liburan</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">Temukan berbagai keuntungan menyewa mobil beserta driver untuk perjalanan liburan atau bisnis Anda agar lebih tenang dan nyaman.</p>
+                        <div class="flex items-center text-xs text-gray-500 font-semibold border-t border-gray-100 pt-4">
+                            <i class="far fa-calendar-alt mr-1"></i> 12 Feb 2026
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Item 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
+                    <div class="h-48 bg-gray-300 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gray-400 flex items-center justify-center text-white">
+                            <i class="fas fa-newspaper text-5xl opacity-50 group-hover:scale-110 transition-transform duration-500"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs text-yellow-600 font-bold mb-2 uppercase tracking-wide">Destinasi</div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-3 group-hover:text-yellow-500 transition-colors cursor-pointer leading-tight">Panduan Lengkap Wisata Bromo untuk Pemula</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">Persiapan apa saja yang perlu dilakukan sebelum berwisata ke kawasan Gunung Bromo? Simak panduan lengkapnya di sini.</p>
+                        <div class="flex items-center text-xs text-gray-500 font-semibold border-t border-gray-100 pt-4">
+                            <i class="far fa-calendar-alt mr-1"></i> 05 Mar 2026
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Item 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
+                    <div class="h-48 bg-gray-300 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gray-400 flex items-center justify-center text-white">
+                            <i class="fas fa-newspaper text-5xl opacity-50 group-hover:scale-110 transition-transform duration-500"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs text-yellow-600 font-bold mb-2 uppercase tracking-wide">Info Layanan</div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-3 group-hover:text-yellow-500 transition-colors cursor-pointer leading-tight">Layanan Rental Mobil Bulanan untuk Korporat</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">Solusi transportasi hemat dan efisien untuk perusahaan dengan sistem rental bulanan dari Situkangpiknik.</p>
+                        <div class="flex items-center text-xs text-gray-500 font-semibold border-t border-gray-100 pt-4">
+                            <i class="far fa-calendar-alt mr-1"></i> 10 Mar 2026
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <a href="#" class="inline-block border-2 border-blue-900 text-blue-900 font-bold py-3 px-8 rounded-full hover:bg-blue-900 hover:text-white transition-colors">Baca Artikel Lainnya</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Maps Section -->
+    <section id="kontak" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row bg-white rounded-3xl shadow-2xl overflow-hidden">
+                <div class="lg:w-1/2 p-12 bg-blue-900 text-white">
+                    <h2 class="text-4xl font-bold mb-8">Hubungi Kantor Kami</h2>
+                    <div class="space-y-8">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-yellow-500 p-3 rounded-lg text-blue-900">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Alamat Kantor</h4>
+                                <p class="text-gray-300 text-sm leading-relaxed">Griya Bhayangkara Blok H No. 1,
+                                    Masangan Kulon, Sukodono, Sidoarjo 61258, Jawa Timur - Indonesia.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-yellow-500 p-3 rounded-lg text-blue-900">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Hubungi Kami</h4>
+                                <p class="text-gray-300">Office: 0812-4990-7117</p>
+                                <p class="text-gray-300">Admin: 0821-4464-4998</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-yellow-500 p-3 rounded-lg text-blue-900">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Email</h4>
+                                <p class="text-gray-300">info@situkangpiknik.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 relative min-h-[400px] bg-gray-200">
+                    <!-- Static map representation/Placeholder for actual interaction -->
+                    <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
+                        <i class="fas fa-map-marked-alt text-6xl text-blue-900 mb-4"></i>
+                        <h3 class="text-2xl font-bold text-blue-900 mb-2">Lokasi Strategis Kami</h3>
+                        <p class="text-gray-600 mb-6 max-w-sm">Temukan kami di Griya Bhayangkara. Klik tombol dibawah
+                            untuk petunjuk arah langsung melalui Google Maps.</p>
+                        <a href="https://maps.app.goo.gl/zHRrgS21ZYu71BF8A" target="_blank"
+                            class="bg-blue-900 text-white py-4 px-10 rounded-full font-bold shadow-lg hover:bg-blue-800 transition transform hover:scale-105">
+                            Lihat Lokasi di Google Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">SITUKANG<span class="text-yellow-500">PIKNIK</span>
+                    </h3>
+                    <p class="text-gray-400">Penyedia jasa sewa mobil (dengan driver) dan paket wisata domestik
+                        Indonesia yang profesional dan terpercaya.</p>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="https://www.tiktok.com/@rentacarwisataindonesia" target="_blank"
+                            class="bg-white/10 p-3 rounded-full hover:bg-yellow-500 hover:text-blue-900 transition-all">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-white/10 p-3 rounded-full hover:bg-yellow-500 hover:text-blue-900 transition-all text-xl">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6 border-b-2 border-yellow-500 w-fit">Informasi Kontak</h4>
+                    <ul class="space-y-4 text-gray-400">
+                        <li class="flex items-center"><i class="fas fa-phone mr-3 text-yellow-500"></i> 0812-4990-7117
+                        </li>
+                        <li class="flex items-center"><i class="fas fa-envelope mr-3 text-yellow-500"></i>
+                            info@situkangpiknik.com</li>
+                        <li class="flex items-start"><i class="fas fa-map-marker-alt mr-3 mt-1 text-yellow-500"></i>
+                            <span>Sidoarjo, Jawa Timur</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6 border-b-2 border-yellow-500 w-fit">Jam Operasional</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex justify-between"><span>Senin - Jumat:</span> <span>08:00 - 17:00</span></li>
+                        <li class="flex justify-between"><span>Sabtu:</span> <span>08:00 - 14:00</span></li>
+                        <li class="flex justify-between"><span>Minggu:</span> <span>Tutup</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="border-t border-gray-800 pt-8 flex flex-col md:row justify-between items-center text-gray-500 text-sm">
+                <p>&copy; 2026 Situkangpiknik. All rights reserved.</p>
+                <div class="mt-4 md:mt-0 flex space-x-6">
+                    <a href="#" class="hover:text-white transition">Kebijakan Privasi</a>
+                    <a href="#" class="hover:text-white transition">Syarat & Ketentuan</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fixed WhatsApp Floating Button -->
+    <a href="https://wa.me/6281249907117" target="_blank"
+        class="fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:bg-green-600 transition z-50 animate-bounce">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        menuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                e.preventDefault();
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Sticky Navbar subtle effect on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-1');
+                nav.classList.remove('py-0');
+            } else {
+                nav.classList.remove('py-1');
+            }
+        });
+    </script>
+</body>
+
+</html>
